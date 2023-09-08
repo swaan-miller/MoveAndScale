@@ -8,7 +8,6 @@ struct ContentView: View {
     @State private var lastScale: CGFloat = 0
     @State private var offset: CGSize = .zero
     @State private var lastStoredOffset: CGSize = .zero
-    var circleMaskWidth: CGFloat = 0
 
     var drag: some Gesture {
         return DragGesture()
@@ -52,60 +51,40 @@ struct ContentView: View {
 
     
     var body: some View {
-        ZStack {
-            Color.black.ignoresSafeArea()
-
+        
             ZStack {
-                    Image("piglet")
+                Color.black.ignoresSafeArea()
+
+                ZStack {
+                    Image("swaan_cup")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .accessibilityLabel("Selected Profile Image")
                         .overlay(content: {
                             GeometryReader { proxy in
                                 let rect = proxy.frame(in: .named("CROPVIEW"))
-                                Color.clear
-                                    .onChange(of: isInteracting) { newValue in
-                                        withAnimation(.easeInOut(duration: 0.4)) {
-                                            if rect.minX > 20 {
-                                                offset.width = offset.width - rect.minX + 20
-                                                print("""
-                                                if rect.minX > 20
-                                                minX = \(rect.minX)
-                                                offset width = \(offset.width)
-                                                """)
+//                                let centerPoint = CGPoint(x: rect.width / 2, y: rect.height / 2)
+//                                let radius = proxy.size.width / 2 - 20
+                                    Color.clear
+                                        .onChange(of: isInteracting) { newValue in
+                                            withAnimation(.easeInOut(duration: 0.4)) {
+                                                if rect.minX > 20 {
+                                                    offset.width = offset.width - rect.minX + 20
+                                                }
+                                                if rect.minY > 20 {
+                                                    offset.height = offset.height - rect.minY + 20
+                                                }
+                                                if rect.maxX < proxy.size.width - 20 {
+                                                    offset.width = rect.minX - offset.width - 20
+                                                }
+                                                if rect.maxY < proxy.size.height - 20 {
+                                                    offset.height = rect.minY - offset.height - 20
+                                                }
                                             }
-                                            if rect.minY > 20 {
-                                                offset.height = offset.height - rect.minY + 20
-                                                print("""
-                                                if rect.minY > 20
-                                                minY = \(rect.minY)
-                                                offset height = \(offset.height)
-                                                """)
-                                            }
-                                            if rect.maxX < proxy.size.width - 20 {
-                                                offset.width = rect.minX - offset.width - 20
-                                                print(
-                                                """
-                                                if rect.minX < proxy.size.width - 20
-                                                maxX = \(rect.minX)
-                                                width = \(proxy.size.width - 20)
-                                                """)
-                                            }
-                                            if rect.maxY < proxy.size.height - 20 {
-                                                offset.height = rect.minY - offset.height - 20
-                                                print(
-                                                """
-                                                if rect.maxY < proxy.size.height - 20
-                                                minY = \(rect.minY)
-                                                height = \(proxy.size.height - 20)
-                                                offset height = \(rect.minY - offset.height - 20)
-                                                """)
+                                            if !newValue {
+                                                lastStoredOffset = offset
                                             }
                                         }
-                                        if !newValue {
-                                            lastStoredOffset = offset
-                                        }
-                                    }
                             }
                         })
                         .scaleEffect(scale)
@@ -116,40 +95,38 @@ struct ContentView: View {
                             resetOriginalImageState()
                         }
                         .coordinateSpace(name: "CROPVIEW")
-
                     Color.black.ignoresSafeArea()
                         .opacity(0.5)
                         .reverseMask {
                             Circle()
                                 .padding(20)
                         }
-            }
-            .ignoresSafeArea()
-            
-            VStack() {
-                Text("Move and Scale")
-                    .foregroundColor(.white)
-                    .padding(.top, 60)
-                Spacer()
-                HStack {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Text("Cancel")
-                            .foregroundColor(.white)
-                    }
-                    Spacer()
-                    Button {
-                        // need to convert view to image
-                    } label: {
-                        Text("Choose")
-                            .foregroundColor(.white)
-                    }
                 }
-                .padding(.horizontal, 16)
-                .padding(.bottom, 30)
-            }
-            Text("width: \(offset.width)  height: \(offset.height)")
+                .ignoresSafeArea()
+                
+                VStack() {
+                    Text("Move and Scale")
+                        .foregroundColor(.white)
+                        .padding(.top, 60)
+                    Spacer()
+                    HStack {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Text("Cancel")
+                                .foregroundColor(.white)
+                        }
+                        Spacer()
+                        Button {
+                            // need to convert view to image
+                        } label: {
+                            Text("Choose")
+                                .foregroundColor(.white)
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 30)
+                }
         }
     }
     

@@ -4,20 +4,18 @@ import UIKit
 struct ContentView: View {
     @Environment(\.dismiss) private var dismiss
     @GestureState private var isInteracting: Bool = false
-    @State private var scale: CGFloat = 1.0
-    @State private var lastScale: CGFloat = 0
-    @State private var offset: CGSize = .zero
-    @State private var lastStoredOffset: CGSize = .zero
+    @ObservedObject private var viewModel = ContentViewModel()
 
     var drag: some Gesture {
         return DragGesture()
             .updating($isInteracting) { _, out, _ in
                 out = true
             } .onChanged { value in
+                /// TODO: Move this to the view model
                 let translation = value.translation
-                offset = CGSize(
-                    width: translation.width + lastStoredOffset.width,
-                    height: translation.height + lastStoredOffset.height
+                viewModel.offset = CGSize(
+                    width: translation.width + viewModel.lastStoredOffset.width,
+                    height: translation.height + viewModel.lastStoredOffset.height
                 )
             }
         
@@ -30,20 +28,21 @@ struct ContentView: View {
             }
             .onChanged { value in
                 withAnimation {
-                    let updatedScale = value + lastScale
-                    scale = updatedScale < 1 ? 1 : updatedScale // limit scale
+                    let updatedScale = value + viewModel.lastScale
+                    viewModel.scale = updatedScale < 1 ? 1 : updatedScale // limit scale
                 }
             }
             .onEnded { value in
                 withAnimation(.easeInOut(duration: 0.2)) {
-                    if scale < 1 {
-                        scale = 1
-                        lastScale = 0
-                    } else if scale > 2 {
-                        scale = 2
-                        lastScale = scale - 1
+                    /// TODO: Move this to the view model
+                    if viewModel.scale < 1 {
+                        viewModel.scale = 1
+                        viewModel.lastScale = 0
+                    } else if viewModel.scale > 2 {
+                        viewModel.scale = 2
+                        viewModel.lastScale = viewModel.scale - 1
                     } else {
-                        lastScale = scale - 1
+                        viewModel.lastScale = viewModel.scale - 1
                     }
                 }
             }
@@ -56,45 +55,15 @@ struct ContentView: View {
                 Color.black.ignoresSafeArea()
 
                 ZStack {
-                    Image("swaan_cup")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .accessibilityLabel("Selected Profile Image")
-                        .overlay(content: {
+                    imageView
+                    Circle()
+                        .foregroundColor(.clear)
+                        .overlay {
                             GeometryReader { proxy in
-                                let rect = proxy.frame(in: .named("CROPVIEW"))
-//                                let centerPoint = CGPoint(x: rect.width / 2, y: rect.height / 2)
-//                                let radius = proxy.size.width / 2 - 20
-                                    Color.clear
-                                        .onChange(of: isInteracting) { newValue in
-                                            withAnimation(.easeInOut(duration: 0.4)) {
-                                                if rect.minX > 20 {
-                                                    offset.width = offset.width - rect.minX + 20
-                                                }
-                                                if rect.minY > 20 {
-                                                    offset.height = offset.height - rect.minY + 20
-                                                }
-                                                if rect.maxX < proxy.size.width - 20 {
-                                                    offset.width = rect.minX - offset.width - 20
-                                                }
-                                                if rect.maxY < proxy.size.height - 20 {
-                                                    offset.height = rect.minY - offset.height - 20
-                                                }
-                                            }
-                                            if !newValue {
-                                                lastStoredOffset = offset
-                                            }
-                                        }
+                                updateCircleRect(using: proxy)
                             }
-                        })
-                        .scaleEffect(scale)
-                        .offset(offset)
-                        .gesture(drag)
-                        .gesture(magnification)
-                        .onTapGesture(count: 2) {
-                            resetOriginalImageState()
                         }
-                        .coordinateSpace(name: "CROPVIEW")
+                        .padding(20)
                     Color.black.ignoresSafeArea()
                         .opacity(0.5)
                         .reverseMask {
@@ -102,6 +71,7 @@ struct ContentView: View {
                                 .padding(20)
                         }
                 }
+                .coordinateSpace(name: "CONTAINER")
                 .ignoresSafeArea()
                 
                 VStack() {
@@ -129,12 +99,35 @@ struct ContentView: View {
                 }
         }
     }
-    
-    func resetOriginalImageState() {
-        scale = 1.0
-        lastScale = 0
-        offset = .zero
-        lastStoredOffset = .zero
+
+    func updateCircleRect(using proxy: GeometryProxy) -> some View {
+        let rect = proxy.frame(in: .named("CONTAINER"))
+        viewModel.circleRect = rect
+        return Color.clear
+    }
+
+    var imageView: some View {
+        Image("swaan_cup")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .accessibilityLabel("Selected Profile Image")
+            .overlay(content: {
+                GeometryReader { proxy in
+                    let rect = proxy.frame(in: .named("CONTAINER"))
+                    let _ = print("Image rect: \(rect) circle rect: \(viewModel.circleRect)")
+                    Color.clear
+                        .onChange(of: isInteracting) { isInteracting in
+                            viewModel.interactionDidChange(isInteracting: isInteracting, imageRect: rect)
+                        }
+                }
+            })
+            .scaleEffect(viewModel.scale)
+            .offset(viewModel.offset)
+            .gesture(drag)
+            .gesture(magnification)
+            .onTapGesture(count: 2) {
+                viewModel.resetOriginalImageState()
+            }
     }
 }
 

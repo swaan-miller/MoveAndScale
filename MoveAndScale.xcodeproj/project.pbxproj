@@ -7,13 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		841BF0E32AAB561000308FAA /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841BF0E22AAB561000308FAA /* ContentViewModel.swift */; };
+		841BF0EB2AAB57F500308FAA /* MoveAndScaleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841BF0EA2AAB57F500308FAA /* MoveAndScaleTests.swift */; };
+		841BF0F22AAB580300308FAA /* ContentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841BF0F12AAB580300308FAA /* ContentViewModelTests.swift */; };
 		8F1CA6882AA9E7870012F1FD /* MoveAndScaleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1CA6872AA9E7870012F1FD /* MoveAndScaleApp.swift */; };
 		8F1CA68A2AA9E7870012F1FD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1CA6892AA9E7870012F1FD /* ContentView.swift */; };
 		8F1CA68C2AA9E7870012F1FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F1CA68B2AA9E7870012F1FD /* Assets.xcassets */; };
 		8F1CA68F2AA9E7870012F1FD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F1CA68E2AA9E7870012F1FD /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		841BF0EC2AAB57F500308FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F1CA67C2AA9E7870012F1FD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8F1CA6832AA9E7870012F1FD;
+			remoteInfo = MoveAndScale;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		841BF0E22AAB561000308FAA /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		841BF0E82AAB57F500308FAA /* MoveAndScaleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoveAndScaleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		841BF0EA2AAB57F500308FAA /* MoveAndScaleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveAndScaleTests.swift; sourceTree = "<group>"; };
+		841BF0F12AAB580300308FAA /* ContentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModelTests.swift; sourceTree = "<group>"; };
+		841BF0F32AAB5D7500308FAA /* MoveAndScale.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MoveAndScale.xctestplan; sourceTree = "<group>"; };
 		8F1CA6842AA9E7870012F1FD /* MoveAndScale.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoveAndScale.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F1CA6872AA9E7870012F1FD /* MoveAndScaleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveAndScaleApp.swift; sourceTree = "<group>"; };
 		8F1CA6892AA9E7870012F1FD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -22,6 +40,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		841BF0E52AAB57F500308FAA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8F1CA6812AA9E7870012F1FD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -32,10 +57,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		841BF0E92AAB57F500308FAA /* MoveAndScaleTests */ = {
+			isa = PBXGroup;
+			children = (
+				841BF0EA2AAB57F500308FAA /* MoveAndScaleTests.swift */,
+				841BF0F12AAB580300308FAA /* ContentViewModelTests.swift */,
+			);
+			path = MoveAndScaleTests;
+			sourceTree = "<group>";
+		};
 		8F1CA67B2AA9E7870012F1FD = {
 			isa = PBXGroup;
 			children = (
+				841BF0F32AAB5D7500308FAA /* MoveAndScale.xctestplan */,
 				8F1CA6862AA9E7870012F1FD /* MoveAndScale */,
+				841BF0E92AAB57F500308FAA /* MoveAndScaleTests */,
 				8F1CA6852AA9E7870012F1FD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				8F1CA6842AA9E7870012F1FD /* MoveAndScale.app */,
+				841BF0E82AAB57F500308FAA /* MoveAndScaleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -53,6 +90,7 @@
 			children = (
 				8F1CA6872AA9E7870012F1FD /* MoveAndScaleApp.swift */,
 				8F1CA6892AA9E7870012F1FD /* ContentView.swift */,
+				841BF0E22AAB561000308FAA /* ContentViewModel.swift */,
 				8F1CA68B2AA9E7870012F1FD /* Assets.xcassets */,
 				8F1CA68D2AA9E7870012F1FD /* Preview Content */,
 			);
@@ -70,6 +108,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		841BF0E72AAB57F500308FAA /* MoveAndScaleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 841BF0EE2AAB57F500308FAA /* Build configuration list for PBXNativeTarget "MoveAndScaleTests" */;
+			buildPhases = (
+				841BF0E42AAB57F500308FAA /* Sources */,
+				841BF0E52AAB57F500308FAA /* Frameworks */,
+				841BF0E62AAB57F500308FAA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				841BF0ED2AAB57F500308FAA /* PBXTargetDependency */,
+			);
+			name = MoveAndScaleTests;
+			productName = MoveAndScaleTests;
+			productReference = 841BF0E82AAB57F500308FAA /* MoveAndScaleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8F1CA6832AA9E7870012F1FD /* MoveAndScale */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8F1CA6922AA9E7870012F1FD /* Build configuration list for PBXNativeTarget "MoveAndScale" */;
@@ -97,6 +153,10 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					841BF0E72AAB57F500308FAA = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 8F1CA6832AA9E7870012F1FD;
+					};
 					8F1CA6832AA9E7870012F1FD = {
 						CreatedOnToolsVersion = 14.3;
 					};
@@ -116,11 +176,19 @@
 			projectRoot = "";
 			targets = (
 				8F1CA6832AA9E7870012F1FD /* MoveAndScale */,
+				841BF0E72AAB57F500308FAA /* MoveAndScaleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		841BF0E62AAB57F500308FAA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8F1CA6822AA9E7870012F1FD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -133,18 +201,72 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		841BF0E42AAB57F500308FAA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				841BF0F22AAB580300308FAA /* ContentViewModelTests.swift in Sources */,
+				841BF0EB2AAB57F500308FAA /* MoveAndScaleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8F1CA6802AA9E7870012F1FD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8F1CA68A2AA9E7870012F1FD /* ContentView.swift in Sources */,
 				8F1CA6882AA9E7870012F1FD /* MoveAndScaleApp.swift in Sources */,
+				841BF0E32AAB561000308FAA /* ContentViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		841BF0ED2AAB57F500308FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8F1CA6832AA9E7870012F1FD /* MoveAndScale */;
+			targetProxy = 841BF0EC2AAB57F500308FAA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		841BF0EF2AAB57F500308FAA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HDE72H7JV2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.swiftlee.MoveAndScaleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoveAndScale.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MoveAndScale";
+			};
+			name = Debug;
+		};
+		841BF0F02AAB57F500308FAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HDE72H7JV2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.swiftlee.MoveAndScaleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoveAndScale.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MoveAndScale";
+			};
+			name = Release;
+		};
 		8F1CA6902AA9E7870012F1FD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -320,6 +442,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		841BF0EE2AAB57F500308FAA /* Build configuration list for PBXNativeTarget "MoveAndScaleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				841BF0EF2AAB57F500308FAA /* Debug */,
+				841BF0F02AAB57F500308FAA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8F1CA67F2AA9E7870012F1FD /* Build configuration list for PBXProject "MoveAndScale" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

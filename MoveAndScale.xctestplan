@@ -1,0 +1,28 @@
+{
+  "configurations" : [
+    {
+      "id" : "3838CD84-B343-482F-B698-CE6435E78653",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:MoveAndScale.xcodeproj",
+      "identifier" : "8F1CA6832AA9E7870012F1FD",
+      "name" : "MoveAndScale"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:MoveAndScale.xcodeproj",
+        "identifier" : "841BF0E72AAB57F500308FAA",
+        "name" : "MoveAndScaleTests"
+      }
+    }
+  ],
+  "version" : 1
+}
